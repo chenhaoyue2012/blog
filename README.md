@@ -1,2 +1,2 @@
-# blog
-blog-laravel
+# admin
+admin-laravel-layui
