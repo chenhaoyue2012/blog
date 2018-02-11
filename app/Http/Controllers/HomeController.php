@@ -71,20 +71,20 @@ class HomeController extends Controller
 
     public function bindUserAndRole(Request $request)
     {
-        $role = Role::where(array('name'=>'owner'))->first();
+        /*$role = Role::where(array('name'=>'owner'))->first();
         $user = User::where(['name'=>'moon'])->first();
         //user和role绑定
         $attach = $user->attachRole($role); // 参数可以是Role对象，数组或id
-        var_dump($user,$role,$attach);
+        var_dump($user,$role,$attach);*/
     }
 
     public function bindRoleAndPermission(Request $request)
     {
-        $role = Role::where(array('name'=>'owner'))->first();
-        $permission = Permission::where(array('name'=>'edit-user'))->first();
+        /*$role = Role::where(array('name'=>'owner'))->first();
+        $permission = Permission::where(array('name'=>'bindRoleAndPermission'))->first();
 
         //role和permission绑定
         $attach = $role->attachPermission($permission); // 参数可以是Role对象，数组或id
-        var_dump($role,$permission,$attach);
+        var_dump($role,$permission,$attach);*/
     }
 }

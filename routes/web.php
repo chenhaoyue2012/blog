@@ -16,10 +16,10 @@ Route::get('/', function () {
 });
 Auth::routes();
 
-Route::group(['middleware' => ['auth','CheckAge']], function () {
+Route::group(['middleware' => ['auth','CheckRole']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::get('/home/userrole', 'HomeController@bindUserAndRole');
-    Route::get('/home/rolepermission', 'HomeController@bindRoleAndPermission');
+    Route::get('/home/userrole', 'HomeController@bindUserAndRole')->name('bindUserAndRole');
+    Route::get('/home/rolepermission', 'HomeController@bindRoleAndPermission')->name('bindRoleAndPermission');
 
 });
