@@ -33,15 +33,15 @@ class HomeController extends Controller
             $owner->description = 'User is the owner of a given project';
             $owner->save();
 
-            $admin = new Role();
+            /*$admin = new Role();
             $admin->name = 'admin';
             $admin->display_name = 'User Administrator';
             $admin->description = 'User is allowed to manage and edit other users';
-            $admin->save();
+            $admin->save();*/
 
 
             //调用EntrustUserTrait提供的attachRole方法
-            $user->attachRole($admin); // 参数可以是Role对象，数组或id
+//            $user->attachRole($admin); // 参数可以是Role对象，数组或id
 
 
             // 或者也可以使用Eloquent原生的方法
@@ -54,16 +54,16 @@ class HomeController extends Controller
             $createPost->description = 'create new blog posts';
             $createPost->save();
 
-            $editUser = new Permission();
+            /*$editUser = new Permission();
             $editUser->name = 'edit-user';
             $editUser->display_name = 'Edit Users';
             $editUser->description = 'edit existing users';
-            $editUser->save();
+            $editUser->save();*/
 
-            $owner->attachPermission($createPost);  //给角色分配权限
+//            $owner->attachPermission($createPost);  //给角色分配权限
 //等价于 $owner->perms()->sync(array($createPost->id));
 
-            $admin->attachPermissions(array($createPost, $editUser));
+//            $admin->attachPermissions(array($createPost, $editUser));
 //等价于 $admin->perms()->sync(array($createPost->id, $editUser->id));
         }
         return view('home');
