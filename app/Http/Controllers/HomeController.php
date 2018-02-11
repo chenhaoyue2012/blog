@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         $user = User::where('name', '=', 'moon')->first();
-//        var_dump($user->hasRole('owner'),$user->can('edit-user'));
+        var_dump($user->hasRole('owner'),$user->can('edit-user'));
         if (!$user->hasRole('admin')) {
             $owner = new Role();
             $owner->name = 'owner';
@@ -38,7 +38,6 @@ class HomeController extends Controller
             $admin->display_name = 'User Administrator';
             $admin->description = 'User is allowed to manage and edit other users';
             $admin->save();
-
 
 
             //调用EntrustUserTrait提供的attachRole方法
@@ -68,5 +67,13 @@ class HomeController extends Controller
 //等价于 $admin->perms()->sync(array($createPost->id, $editUser->id));
         }
         return view('home');
+    }
+
+    public function bindRoleAndPermission(Request $request)
+    {
+        $role = Role::where(array('name'=>'owner'))->first();
+        $user = $request->user();
+        $attachret = $user->attachRole($role); // 参数可以是Role对象，数组或id
+        var_dump($user,$role,$attachret);
     }
 }
