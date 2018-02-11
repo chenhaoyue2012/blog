@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         $user = User::where('name', '=', 'moon')->first();
-        var_dump($user->hasRole('owner'),$user->can('edit-user'));
+//        var_dump($user->hasRole('owner'),$user->can('edit-user'));
         if (!$user->hasRole('admin')) {
             $owner = new Role();
             $owner->name = 'owner';
@@ -60,7 +60,7 @@ class HomeController extends Controller
             $editUser->description = 'edit existing users';
             $editUser->save();
 
-            $owner->attachPermission($createPost);
+            $owner->attachPermission($createPost);  //给角色分配权限
 //等价于 $owner->perms()->sync(array($createPost->id));
 
             $admin->attachPermissions(array($createPost, $editUser));
@@ -69,11 +69,22 @@ class HomeController extends Controller
         return view('home');
     }
 
+    public function bindUserAndRole(Request $request)
+    {
+        $role = Role::where(array('name'=>'owner'))->first();
+        $user = User::where(['name'=>'moon'])->first();
+        //user和role绑定
+        $attach = $user->attachRole($role); // 参数可以是Role对象，数组或id
+        var_dump($user,$role,$attach);
+    }
+
     public function bindRoleAndPermission(Request $request)
     {
         $role = Role::where(array('name'=>'owner'))->first();
-        $user = $request->user();
-        $attachret = $user->attachRole($role); // 参数可以是Role对象，数组或id
-        var_dump($user,$role,$attachret);
+        $permission = Permission::where(array('name'=>'edit-user'))->first();
+
+        //role和permission绑定
+        $attach = $role->attachPermission($permission); // 参数可以是Role对象，数组或id
+        var_dump($role,$permission,$attach);
     }
 }

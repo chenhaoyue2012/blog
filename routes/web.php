@@ -19,6 +19,7 @@ Auth::routes();
 Route::group(['middleware' => ['auth','CheckAge']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::get('/home/roletest', 'HomeController@bindRoleAndPermission');
+    Route::get('/home/userrole', 'HomeController@bindUserAndRole');
+    Route::get('/home/rolepermission', 'HomeController@bindRoleAndPermission');
 
 });
