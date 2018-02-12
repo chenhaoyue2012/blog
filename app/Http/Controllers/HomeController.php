@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\{User,Role,Permission};
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 
 class HomeController extends Controller
 {
@@ -86,5 +87,11 @@ class HomeController extends Controller
         //role和permission绑定
         $attach = $role->attachPermission($permission); // 参数可以是Role对象，数组或id
         var_dump($role,$permission,$attach);*/
+    }
+
+    public function redistest()
+    {
+        /*Redis::set('user:name:3', 'moon');
+        var_dump(Redis::get('user:name:3'));*/
     }
 }

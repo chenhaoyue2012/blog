@@ -21,5 +21,6 @@ Route::group(['middleware' => ['auth','CheckRole']], function () {
 
     Route::get('/home/userrole', 'HomeController@bindUserAndRole')->name('bindUserAndRole');
     Route::get('/home/rolepermission', 'HomeController@bindRoleAndPermission')->name('bindRoleAndPermission');
+    Route::get('/home/redistest', 'HomeController@redistest');
 
 });
