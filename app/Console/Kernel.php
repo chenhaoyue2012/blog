@@ -26,6 +26,13 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        /*$schedule->call(function () {
+            file_put_contents('/tmp/crontest.log', date('Y-m-d H:i:s') . ' hello'  . PHP_EOL, FILE_APPEND);
+        })->everyMinute()->timezone('Asia/Shanghai');
+
+        $schedule->call(function () {
+            file_put_contents('/tmp/crontest2.log', date('Y-m-d H:i:s') . ' world'  . PHP_EOL, FILE_APPEND);
+        })->everyFiveMinutes()->timezone('Asia/Shanghai');*/
     }
 
     /**
